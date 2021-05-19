@@ -163,4 +163,11 @@ public class Main {
 		}
 		return null;
 	}
+	
+	private static SendToACNHFrame sendToACNH = null;
+	public static void sendToACNH(ACNHFile acnh) {
+		if (sendToACNH == null) sendToACNH = new SendToACNHFrame();
+		sendToACNH.setACNHFile(acnh);
+		sendToACNH.setVisible(true);
+	}
 }

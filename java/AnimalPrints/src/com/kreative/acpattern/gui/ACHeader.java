@@ -14,19 +14,13 @@ import com.kreative.acpattern.ACBaseFile;
 public class ACHeader extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private final ACBaseFile source;
-	private final JLabel imageLabel;
-	private final JLabel titleLabel;
-	private final JLabel creatorLabel;
-	private final JLabel townLabel;
+	private final JLabel imageLabel = icon("empty64.png");
+	private final JLabel titleLabel = new JLabel("Design Pattern");
+	private final JLabel creatorLabel = new JLabel("Unknown");
+	private final JLabel townLabel = new JLabel("Unknown");
+	private ACBaseFile source = null;
 	
-	public ACHeader(ACBaseFile source) {
-		this.source = source;
-		this.imageLabel = new JLabel(new ImageIcon(image64(source.getImage())));
-		this.titleLabel = new JLabel(source.getTitle());
-		this.creatorLabel = new JLabel(source.getCreatorName());
-		this.townLabel = new JLabel(source.getTownName());
-		
+	public ACHeader() {
 		JPanel iconPanel = column(icon("graphics.png"), icon("person.png"), icon("home.png"));
 		JPanel labelPanel = column(titleLabel, creatorLabel, townLabel);
 		
@@ -40,11 +34,28 @@ public class ACHeader extends JPanel {
 		setBorder(BorderFactory.createEmptyBorder(12, 20, 12, 20));
 	}
 	
+	public ACHeader(ACBaseFile source) {
+		this();
+		setSource(source);
+	}
+	
+	public void setSource(ACBaseFile source) {
+		this.source = source;
+		update();
+	}
+	
 	public void update() {
-		imageLabel.setIcon(new ImageIcon(image64(source.getImage())));
-		titleLabel.setText(source.getTitle());
-		creatorLabel.setText(source.getCreatorName());
-		townLabel.setText(source.getTownName());
+		if (source == null) {
+			imageLabel.setIcon(new ImageIcon(ACHeader.class.getResource("empty64.png")));
+			titleLabel.setText("Design Pattern");
+			creatorLabel.setText("Unknown");
+			townLabel.setText("Unknown");
+		} else {
+			imageLabel.setIcon(new ImageIcon(image64(source.getImage())));
+			titleLabel.setText(source.getTitle());
+			creatorLabel.setText(source.getCreatorName());
+			townLabel.setText(source.getTownName());
+		}
 	}
 	
 	private static BufferedImage image64(BufferedImage image) {

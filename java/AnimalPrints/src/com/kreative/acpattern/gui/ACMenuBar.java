@@ -23,6 +23,7 @@ public class ACMenuBar extends JMenuBar {
 		fileMenu.add(new OpenMenuItem());
 		fileMenu.add(new ConvertMenu(frame, source));
 		if (source instanceof ACBaseFile) fileMenu.add(new ExportMenu(frame, source));
+		fileMenu.add(new SendMenu(source));
 		fileMenu.add(new CloseMenuItem(frame));
 		if (!IS_MAC_OS) fileMenu.add(new ExitMenuItem());
 		add(fileMenu);
