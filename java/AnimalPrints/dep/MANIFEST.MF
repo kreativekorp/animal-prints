@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Kreative Software)
+Main-Class: com.kreative.acpattern.Main
+Class-Path: nrserial.jar ual.jar zxing.jar dep/nrserial.jar dep/ual.jar dep/zxing.jar

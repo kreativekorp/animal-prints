@@ -46,7 +46,7 @@ public class Main {
 		} catch (Exception e) {}
 		
 		if (args.length == 0) {
-			try { openObject("Animal Prints", ImageIO.read(Main.class.getResource("empty.png"))); }
+			try { openObject("Animal Prints", ImageIO.read(Main.class.getResource("leaf-print-32.png"))); }
 			catch (IOException e) { e.printStackTrace(); }
 		} else {
 			for (String arg : args) openFile(new File(arg));

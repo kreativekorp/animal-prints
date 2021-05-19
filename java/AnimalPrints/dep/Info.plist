@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<string>true</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Animal Prints</string>
+	<key>CFBundleGetInfoString</key>
+	<string>© 2021 Kreative Software</string>
+	<key>CFBundleIconFile</key>
+	<string>leaf-print.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kreative.acpattern</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Animal Prints</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>åBLë</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>JavaX</key>
+	<dict>
+		<key>ClassPath</key>
+		<string>$JAVAROOT/animalprints.jar:$JAVAROOT/nrserial.jar:$JAVAROOT/ual.jar:$JAVAROOT/zxing.jar</string>
+		<key>JVMVersion</key>
+		<string>1.5+</string>
+		<key>MainClass</key>
+		<string>com.kreative.acpattern.Main</string>
+		<key>Properties</key>
+		<dict>
+			<key>apple.laf.useScreenMenuBar</key>
+			<string>true</string>
+		</dict>
+		<key>VMOptions</key>
+		<string>-Xmx1024M</string>
+		<key>WorkingDirectory</key>
+		<string>$APP_PACKAGE/..</string>
+	</dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>acnh</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Animal Crossing: New Horizons Design Pattern</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>acnl</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Animal Crossing: New Leaf Design Pattern</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>acww</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Animal Crossing: Wild World Design Pattern</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Portable Network Graphics Image</string>
+			<key>LSHandlerRank</key>
+			<string>None</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>jpg</string>
+				<string>jpeg</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Joint Photography Experts Group Image</string>
+			<key>LSHandlerRank</key>
+			<string>None</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>gif</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Graphic Interchange Format Image</string>
+			<key>LSHandlerRank</key>
+			<string>None</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>bmp</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Bitmap Image</string>
+			<key>LSHandlerRank</key>
+			<string>None</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
+</dict>
+</plist>

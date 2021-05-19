@@ -1,0 +1,33 @@
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <outfile>AnimalPrints.exe</outfile>
+  <jar>animalprints.jar</jar>
+  <dontWrapJar>true</dontWrapJar>
+  <errTitle>Animal Prints</errTitle>
+  <chdir>.</chdir>
+  <customProcName>true</customProcName>
+  <icon>leaf-print.ico</icon>
+  <classPath>
+  	<mainClass>com.kreative.acpattern.Main</mainClass>
+  	<cp>animalprints.jar</cp>
+  	<cp>nrserial.jar</cp>
+  	<cp>ual.jar</cp>
+  	<cp>zxing.jar</cp>
+  </classPath>
+  <jre>
+    <minVersion>1.5.0</minVersion>
+    <maxHeapSize>1024</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0</txtFileVersion>
+    <fileDescription>Animal Prints</fileDescription>
+    <copyright>(C) 2021 Kreative Software</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>1.0</txtProductVersion>
+    <productName>Animal Prints</productName>
+    <companyName>Kreative Software</companyName>
+    <internalName>AnimalPrints</internalName>
+    <originalFilename>AnimalPrints.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>
