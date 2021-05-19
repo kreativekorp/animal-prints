@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -44,12 +46,17 @@ public class Main {
 			aacn.set(tk, "Animal Prints");
 		} catch (Exception e) {}
 		
-		for (String arg : args) openFile(new File(arg));
-		if (decoder.partialCodeCount() > 0) {
-			JOptionPane.showMessageDialog(
-				null, "Some QR codes were incomplete. Please include all four QR codes for pro patterns.",
-				"Open", JOptionPane.INFORMATION_MESSAGE
-			);
+		if (args.length == 0) {
+			try { openObject("Animal Prints", ImageIO.read(Main.class.getResource("empty.png"))); }
+			catch (IOException e) { e.printStackTrace(); }
+		} else {
+			for (String arg : args) openFile(new File(arg));
+			if (decoder.partialCodeCount() > 0) {
+				JOptionPane.showMessageDialog(
+					null, "Some QR codes were incomplete. Please include all four QR codes for pro patterns.",
+					"Open", JOptionPane.INFORMATION_MESSAGE
+				);
+			}
 		}
 	}
 	
