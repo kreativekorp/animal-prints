@@ -57,6 +57,9 @@ public class Main {
 				);
 			}
 		}
+		
+		try { Class.forName("com.kreative.acpattern.gui.mac.MyApplicationListener").newInstance(); }
+		catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	public static void newFromClipboard() {
