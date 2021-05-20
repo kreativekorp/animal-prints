@@ -99,6 +99,7 @@ public class PatternBot {
 		ctrl.clickDPad(DPad.UP); // pencil tool -> color palette tool
 		ctrl.clickDPad(DPad.RIGHT); // color palette tool -> color tool
 		ctrl.clickButton(Button.A); // open color picker
+		ctrl.sleep(500); // wait for color picker opening animation
 		for (int rgb : acnh.getPaletteRGB(new int[15])) {
 			if (Thread.interrupted()) return false;
 			int r = (rgb >> 16) & 0xFF;
