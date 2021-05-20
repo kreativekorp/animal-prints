@@ -89,6 +89,8 @@ public class SwitchController {
 	
 	private int pressDuration = 50;
 	private int releaseDuration = 50;
+	private int moveDuration = 200;
+	private int centerDuration = 200;
 	
 	public synchronized void setPressDuration(int millis) {
 		this.pressDuration = millis;
@@ -96,6 +98,14 @@ public class SwitchController {
 	
 	public synchronized void setReleaseDuration(int millis) {
 		this.releaseDuration = millis;
+	}
+	
+	public synchronized void setMoveDuration(int millis) {
+		this.moveDuration = millis;
+	}
+	
+	public synchronized void setCenterDuration(int millis) {
+		this.centerDuration = millis;
 	}
 	
 	public synchronized void clickButton(Button... buttons) {
@@ -114,16 +124,16 @@ public class SwitchController {
 	
 	public synchronized void nudgeLeftStick(float x, float y) {
 		moveLeftStick(x, y);
-		sleep(pressDuration);
+		sleep(moveDuration);
 		moveLeftStick(0, 0);
-		sleep(releaseDuration);
+		sleep(centerDuration);
 	}
 	
 	public synchronized void nudgeRightStick(float x, float y) {
 		moveRightStick(x, y);
-		sleep(pressDuration);
+		sleep(moveDuration);
 		moveRightStick(0, 0);
-		sleep(releaseDuration);
+		sleep(centerDuration);
 	}
 	
 	public synchronized void pairController() {
