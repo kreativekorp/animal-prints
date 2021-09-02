@@ -22,12 +22,12 @@ eclipseclean:
 
 bin: src
 	mkdir -p bin
-	javac -classpath dep/nrserial.jar:dep/ual.jar -sourcepath src $(SRCFILES) -d bin
+	javac $(JAVACFLAGS) -classpath dep/nrserial.jar:dep/ual.jar -sourcepath src $(SRCFILES) -d bin
 	$(foreach res,$(RESFILES),cp src/$(res) bin/$(res);)
 
 doc: src
 	mkdir -p doc
-	javadoc -classpath dep/nrserial.jar:dep/ual.jar -sourcepath src $(PACKAGES) -d doc
+	javadoc $(JAVADOCFLAGS) -classpath dep/nrserial.jar:dep/ual.jar -sourcepath src $(PACKAGES) -d doc
 
 animalprints.jar: bin
 	export COPYFILE_DISABLE=true
