@@ -67,11 +67,17 @@ public class Main {
 		if (bi != null) openObject("From Clipboard", bi);
 	}
 	
+	private static String lastOpenDirectory = null;
 	public static void open() {
-		FileDialog fd = new FileDialog(new Frame(), "Open", FileDialog.LOAD);
+		Frame frame = new Frame();
+		FileDialog fd = new FileDialog(frame, "Open", FileDialog.LOAD);
+		if (lastOpenDirectory != null) fd.setDirectory(lastOpenDirectory);
 		fd.setVisible(true);
-		if (fd.getDirectory() == null || fd.getFile() == null) return;
-		File file = new File(fd.getDirectory(), fd.getFile());
+		String ds = fd.getDirectory(), fs = fd.getFile();
+		fd.dispose();
+		frame.dispose();
+		if (ds == null || fs == null) return;
+		File file = new File((lastOpenDirectory = ds), fs);
 		open(file);
 	}
 	

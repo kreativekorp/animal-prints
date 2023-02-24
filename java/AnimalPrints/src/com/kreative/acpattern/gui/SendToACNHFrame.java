@@ -33,6 +33,8 @@ import com.kreative.acpattern.robot.SwitchController;
 public class SendToACNHFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
+	private static String lastSaveDirectory = null;
+	
 	private final ACHeader header = new ACHeader();
 	private final JComboBox portSelector = new JComboBox(new Object[0]);
 	private final JButton refreshButton = new JButton("Refresh");
@@ -345,15 +347,14 @@ public class SendToACNHFrame extends JFrame {
 			addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					FileDialog fd = new FileDialog(
-						SendToACNHFrame.this,
-						"Save Firmware",
-						FileDialog.SAVE
-					);
+					FileDialog fd = new FileDialog(SendToACNHFrame.this, "Save Firmware", FileDialog.SAVE);
+					if (lastSaveDirectory != null) fd.setDirectory(lastSaveDirectory);
 					fd.setFile("Joystick_" + fw.name().toLowerCase() + ".hex");
 					fd.setVisible(true);
-					if (fd.getDirectory() == null || fd.getFile() == null) return;
-					File file = new File(fd.getDirectory(), fd.getFile());
+					String ds = fd.getDirectory(), fs = fd.getFile();
+					fd.dispose();
+					if (ds == null || fs == null) return;
+					File file = new File((lastSaveDirectory = ds), fs);
 					try {
 						FileOutputStream out = new FileOutputStream(file);
 						SwitchController.writeFirmware(fw, out);

@@ -17,6 +17,8 @@ import com.kreative.acpattern.ACEncoder;
 public class ExportMenuItem extends JMenuItem {
 	private static final long serialVersionUID = 1L;
 	
+	private static String lastSaveDirectory = null;
+	
 	public ExportMenuItem(final String title, final Frame frame, final Object source, final ACEncoder format) {
 		super(title);
 		if (frame == null || source == null || format == null) {
@@ -26,9 +28,12 @@ public class ExportMenuItem extends JMenuItem {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					FileDialog fd = new FileDialog(frame, "Export", FileDialog.SAVE);
+					if (lastSaveDirectory != null) fd.setDirectory(lastSaveDirectory);
 					fd.setVisible(true);
-					if (fd.getDirectory() == null || fd.getFile() == null) return;
-					File file = new File(fd.getDirectory(), fd.getFile());
+					String ds = fd.getDirectory(), fs = fd.getFile();
+					fd.dispose();
+					if (ds == null || fs == null) return;
+					File file = new File((lastSaveDirectory = ds), fs);
 					try {
 						Object[] o = format.encode(source);
 						try {

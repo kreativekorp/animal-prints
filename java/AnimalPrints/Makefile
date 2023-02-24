@@ -1,6 +1,6 @@
 SRCFILES := $(shell find src -name \*.java)
 RESFILES := $(shell find src -type f \! -name .\* \! -name \*.java | sed s/^src\\///)
-PACKAGES := $(shell find src -name \*.java | sed -E s/^src\\/\|\\/[^\\/]+$$//g | sort | uniq | tr / .)
+PACKAGES := $(shell find src -name \*.java | sed -E s/^src\\/\|\\/[^\\/]+$$//g | grep -v \\.java$$ | sort | uniq | tr / .)
 
 all: clean bin doc animalprints.jar animalprints.zip Animal\ Prints.app
 
@@ -22,6 +22,9 @@ eclipseclean:
 
 bin: src
 	mkdir -p bin
+ifeq ($(origin JAVACFLAGS), undefined)
+	$(eval JAVACFLAGS = $(shell dep/minJavaVerOpts))
+endif
 	javac $(JAVACFLAGS) -classpath dep/nrserial.jar:dep/ual.jar -sourcepath src $(SRCFILES) -d bin
 	$(foreach res,$(RESFILES),cp src/$(res) bin/$(res);)
 
@@ -44,20 +47,42 @@ animalprints.zip: dep animalprints.jar
 	zip -r animalprints.zip Animal\ Prints
 	rm -rf Animal\ Prints
 
-Animal\ Prints.app: dep animalprints.jar
-	mkdir -p Animal\ Prints.app/Contents/MacOS
-	mkdir -p Animal\ Prints.app/Contents/Resources/Java
-	cp -f dep/PkgInfo Animal\ Prints.app/Contents
-	cp -f dep/Info.plist Animal\ Prints.app/Contents
-	cp -f dep/universalJavaApplicationStub Animal\ Prints.app/Contents/MacOS/Animal\ Prints
-	cp -f dep/leaf-print.icns Animal\ Prints.app/Contents/Resources
-	cp -f dep/*.jar Animal\ Prints.app/Contents/Resources/Java
-	cp -f animalprints.jar Animal\ Prints.app/Contents/Resources/Java
+Animal\ Prints.app: Animal\ Prints-Pre10.15.app Animal\ Prints-MacOS10.15.app Animal\ Prints-MacOS11.0.app
+
+Animal\ Prints-Pre10.15.app: dep animalprints.jar
+	mkdir -p Animal\ Prints-Pre10.15.app/Contents/MacOS
+	mkdir -p Animal\ Prints-Pre10.15.app/Contents/Resources/Java
+	cp -f dep/PkgInfo Animal\ Prints-Pre10.15.app/Contents
+	cp -f dep/Info.plist Animal\ Prints-Pre10.15.app/Contents
+	cp -f dep/universalJavaApplicationStub-Pre10.15 Animal\ Prints-Pre10.15.app/Contents/MacOS/Animal\ Prints
+	cp -f dep/leaf-print.icns Animal\ Prints-Pre10.15.app/Contents/Resources
+	cp -f dep/*.jar Animal\ Prints-Pre10.15.app/Contents/Resources/Java
+	cp -f animalprints.jar Animal\ Prints-Pre10.15.app/Contents/Resources/Java
+
+Animal\ Prints-MacOS10.15.app: dep animalprints.jar
+	mkdir -p Animal\ Prints-MacOS10.15.app/Contents/MacOS
+	mkdir -p Animal\ Prints-MacOS10.15.app/Contents/Resources/Java
+	cp -f dep/PkgInfo Animal\ Prints-MacOS10.15.app/Contents
+	cp -f dep/Info.plist Animal\ Prints-MacOS10.15.app/Contents
+	cp -f dep/universalJavaApplicationStub-MacOS10.15 Animal\ Prints-MacOS10.15.app/Contents/MacOS/Animal\ Prints
+	cp -f dep/leaf-print.icns Animal\ Prints-MacOS10.15.app/Contents/Resources
+	cp -f dep/*.jar Animal\ Prints-MacOS10.15.app/Contents/Resources/Java
+	cp -f animalprints.jar Animal\ Prints-MacOS10.15.app/Contents/Resources/Java
+
+Animal\ Prints-MacOS11.0.app: dep animalprints.jar
+	mkdir -p Animal\ Prints-MacOS11.0.app/Contents/MacOS
+	mkdir -p Animal\ Prints-MacOS11.0.app/Contents/Resources/Java
+	cp -f dep/PkgInfo Animal\ Prints-MacOS11.0.app/Contents
+	cp -f dep/Info.plist Animal\ Prints-MacOS11.0.app/Contents
+	cp -f dep/universalJavaApplicationStub-MacOS11.0 Animal\ Prints-MacOS11.0.app/Contents/MacOS/Animal\ Prints
+	cp -f dep/leaf-print.icns Animal\ Prints-MacOS11.0.app/Contents/Resources
+	cp -f dep/*.jar Animal\ Prints-MacOS11.0.app/Contents/Resources/Java
+	cp -f animalprints.jar Animal\ Prints-MacOS11.0.app/Contents/Resources/Java
 
 animalprints.dmg: Animal\ Prints.app
 	rm -rf dmgtmp
 	mkdir -p dmgtmp
-	cp -R Animal\ Prints.app dmgtmp
+	cp -R Animal\ Prints*.app dmgtmp
 	hdiutil create -fs HFS+ -volname "Animal Prints" -srcfolder dmgtmp animalprints.dmg
 	rm -rf dmgtmp
 
@@ -87,4 +112,4 @@ install: animalprints.jar
 	sudo cp -f dep/animalprints.desktop /usr/share/applications/animalprints.desktop
 	sudo chmod -f 644 /usr/share/applications/animalprints.desktop
 
-.PHONY: all eclipseall clean eclipseclean install
+.PHONY: all eclipseall clean eclipseclean Animal\ Prints.app install
